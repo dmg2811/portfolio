@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación Técnica | Energreen Automator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; color: #a1a1aa; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .code-container { background: #111; border-radius: 12px; border: 1px solid #333; padding: 25px; font-family: 'Consolas', monospace; overflow-x: auto; line-height: 1.6; }
+        .keyword { color: #a855f7; font-weight: bold; }
+        .comment { color: #6b7280; font-style: italic; }
+        .string { color: #10b981; }
+        .func { color: #3b82f6; }
+    </style>
+</head>
+<body class="antialiased p-6 md:p-20">
+
+    <div class="max-w-4xl mx-auto">
+        <a href="index.html" class="text-zinc-500 hover:text-white transition flex items-center gap-2 mb-10 group">
+            <i class="fas fa-arrow-left group-hover:-translate-x-1 transition"></i> Volver al Portfolio
+        </a>
+
+        <header class="mb-16">
+            <div class="flex items-center gap-4 mb-4">
+                <span class="bg-purple-500/20 text-purple-400 text-xs font-bold px-3 py-1 rounded-full border border-purple-500/30">RPA PROJECT</span>
+                <span class="text-zinc-600 text-xs">Versión 1.0.4</span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6">
+                Ingeniería de <span class="text-purple-500 font-black">Energreen Automator</span>
+            </h1>
+            <p class="text-xl text-zinc-400 leading-relaxed">
+                Desarrollo de un motor de automatización robótica (RPA) para la gestión masiva de feedback post-venta, integrando Microsoft Excel con protocolos de comunicación externa.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <div class="glass p-8 rounded-2xl border-l-4 border-l-red-500">
+                <h3 class="text-white font-bold text-xl mb-4">El Problema</h3>
+                <p class="text-sm">Envío manual de encuestas de satisfacción para Energreen Monterrey. Proceso propenso a errores humanos, fatiga del operador y pérdida de datos en el seguimiento.</p>
+            </div>
+            <div class="glass p-8 rounded-2xl border-l-4 border-l-emerald-500">
+                <h3 class="text-white font-bold text-xl mb-4">La Solución RPA</h3>
+                <p class="text-sm">Automatización del ciclo de vida del mensaje: Extracción de datos, sanitización de strings, inyección en shell de Windows y confirmación de envío en tiempo real.</p>
+            </div>
+        </div>
+
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold text-white mb-8 flex items-center gap-3">
+                <i class="fas fa-layer-group text-purple-500"></i> Arquitectura del Proceso
+            </h2>
+            <div class="space-y-6">
+                <div class="flex gap-6 items-start">
+                    <div class="bg-purple-500/20 p-3 rounded-lg text-purple-400 font-bold">01</div>
+                    <div>
+                        <h4 class="text-white font-bold">Sanitización y Codificación URI</h4>
+                        <p class="text-sm mt-1">Uso de algoritmos de reemplazo para convertir caracteres especiales y espacios en formato compatible con navegadores (URL Encoding), asegurando que el mensaje no se rompa durante la transferencia.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start">
+                    <div class="bg-purple-500/20 p-3 rounded-lg text-purple-400 font-bold">02</div>
+                    <div>
+                        <h4 class="text-white font-bold">Inyección de Eventos (Shell Scripting)</h4>
+                        <p class="text-sm mt-1">Implementación del objeto <code class="text-purple-300">WScript.Shell</code> para ejecutar llamadas al sistema. Esto permite abrir aplicaciones externas sin intervención del usuario.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6 items-start">
+                    <div class="bg-purple-500/20 p-3 rounded-lg text-purple-400 font-bold">03</div>
+                    <div>
+                        <h4 class="text-white font-bold">Sincronización de Latencia</h4>
+                        <p class="text-sm mt-1">Uso de pausas controladas para compensar la carga de la GUI de WhatsApp Desktop, garantizando que los comandos de teclado (SendKeys) se ejecuten solo cuando la ventana esté activa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="text-2xl font-bold text-white mb-6 flex items-center gap-3 uppercase tracking-tighter">
+            <i class="fas fa-terminal text-purple-500"></i> Script Principal (VBA)
+        </h2>
+        <div class="code-container text-xs md:text-sm mb-16">
+            <p><span class="keyword">Sub</span> <span class="func">EnviarWhatsAppFinal</span>()</p>
+            <p class="comment">&nbsp;&nbsp;&nbsp;' Definición del motor de ejecución de comandos de Windows</p>
+            <p>&nbsp;&nbsp;&nbsp;<span class="keyword">Dim</span> Shell <span class="keyword">As Object</span></p>
+            <p>&nbsp;&nbsp;&nbsp;<span class="keyword">Set</span> Shell = <span class="func">CreateObject</span>(<span class="string">"WScript.Shell"</span>)</p>
+            <p><br></p>
+            <p class="comment">&nbsp;&nbsp;&nbsp;' Preparación del mensaje con URL Encoding para protocolos web</p>
+            <p>&nbsp;&nbsp;&nbsp;Mensaje = <span class="func">Replace</span>(Mensaje, <span class="string">" "</span>, <span class="string">"%20"</span>)</p>
+            <p><br></p>
+            <p class="comment">&nbsp;&nbsp;&nbsp;' Apertura de la aplicación externa mediante URI Protocol</p>
+            <p>&nbsp;&nbsp;&nbsp;URL = <span class="string">"whatsapp://send?phone="</span> & Celular & <span class="string">"&text="</span> & Mensaje</p>
+            <p>&nbsp;&nbsp;&nbsp;Shell.<span class="func">Run</span> URL</p>
+            <p><br></p>
+            <p class="comment">&nbsp;&nbsp;&nbsp;' Gestión de sincronización: Espera de 8s para asegurar carga de la UI</p>
+            <p>&nbsp;&nbsp;&nbsp;<span class="func">Application.Wait</span> (Now + <span class="func">TimeValue</span>(<span class="string">"00:00:08"</span>))</p>
+            <p>&nbsp;&nbsp;&nbsp;<span class="func">SendKeys</span> <span class="string">"~"</span>, <span class="keyword">True</span> <span class="comment">' Emulación de tecla Enter (ASCII 13)</span></p>
+            <p><span class="keyword">End Sub</span></p>
+        </div>
+
+        <section class="mb-20">
+            <h2 class="text-2xl font-bold text-white mb-8">Impacto del Proyecto</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <div class="p-6 border border-white/5 rounded-xl bg-white/5 text-center">
+                    <div class="text-3xl font-black text-white mb-1">100%</div>
+                    <div class="text-[10px] text-zinc-500 uppercase tracking-widest">Eliminación de error manual</div>
+                </div>
+                <div class="p-6 border border-white/5 rounded-xl bg-white/5 text-center">
+                    <div class="text-3xl font-black text-white mb-1">15 min</div>
+                    <div class="text-[10px] text-zinc-500 uppercase tracking-widest">Tiempo de ejecución masiva</div>
+                </div>
+                <div class="p-6 border border-white/5 rounded-xl bg-white/5 text-center">
+                    <div class="text-3xl font-black text-white mb-1">+30%</div>
+                    <div class="text-[10px] text-zinc-500 uppercase tracking-widest">Tasa de respuesta</div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center py-20 border-t border-white/5">
+            <p class="text-zinc-500 text-sm italic">"La verdadera eficiencia no es trabajar más duro, sino dejar que el software lo haga por ti."</p>
+            <p class="mt-4 font-bold text-zinc-400 tracking-tighter">DYLANMIRAMONTES.DEV</p>
+        </footer>
+    </div>
+</body>
+</html>
