@@ -203,42 +203,83 @@
                 </div>
             </div>
 
-
-            <!-- ─────────────────────────────────────────
-                 TARJETA 2: GESTOR DE CITAS (Slider / Panel)
-                 Sistema de cartelería digital con rotación.
-                 Color accent: blue (azul).
-                 NOTA: Esta tarjeta comparte la misma vista (slider.html)
-                 que la tarjeta "SLIDER PANTALLAS" más abajo.
-                 Considera unificarlas o diferenciarlas en el futuro.
-            ───────────────────────────────────────────── -->
+                        <!-- =====================================================
+                 ★ TARJETA 2 (NUEVA): CITASAAS
+                 Gestor de citas con panel admin adaptable a múltiples
+                 negocios: SPAs, barberías, dentistas, etc.
+                 Color accent: rose/pink (diferenciador del resto).
+                 Badge: SAAS LIVE
+                 Link externo: https://citasaas-prueba.vercel.app/
+            ====================================================== -->
             <div class="project-card glass rounded-2xl p-6 flex flex-col group">
-                <div class="h-48 bg-blue-500/10 rounded-xl mb-6 flex flex-col items-center justify-center relative border border-blue-500/20 overflow-hidden">
-                    <span class="absolute top-3 right-3 bg-blue-500/20 text-blue-400 text-[10px] px-2 py-1 rounded-full border border-blue-500/30 font-bold">SMART DISPLAY</span>
-                    <i class="fas fa-tv text-4xl text-blue-500 mb-2 transition-transform group-hover:scale-110"></i>
-                    <h4 class="text-white font-bold tracking-wider">CITAS</h4>
-                    <div class="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+                <!-- Cabecera visual en rosa -->
+                <div class="h-48 bg-rose-500/10 rounded-xl mb-6 flex flex-col items-center justify-center relative border border-rose-500/20 overflow-hidden">
+                    <span class="absolute top-3 right-3 bg-rose-500/20 text-rose-400 text-[10px] px-2 py-1 rounded-full border border-rose-500/30 font-bold">SAAS LIVE</span>
+                    <i class="fas fa-calendar-check text-4xl text-rose-500 mb-2 transition-transform group-hover:scale-110"></i>
+                    <h4 class="text-white font-bold tracking-wider">CITASAAS</h4>
+                    <!-- Overlay hover sutil en rosa -->
+                    <div class="absolute inset-0 bg-rose-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
-                <h3 class="text-xl font-bold text-white mb-2">Gestor De Citas 24/7</h3>
+
+                <h3 class="text-xl font-bold text-white mb-2">Gestor de Citas Multi-Negocio</h3>
                 <p class="text-sm text-zinc-500 mb-6 flex-grow">
-                    Sistema de visualización publicitaria con rotación de hardware (180°) y transiciones fluidas para pantallas comerciales.
+                    Plataforma SaaS para gestión de citas con panel admin incluido. Adaptable a SPAs,
+                    barberías, dentistas y cualquier negocio basado en reservas.
                 </p>
+
+                <!-- Features clave -->
                 <div class="space-y-3 mb-6">
                     <div class="flex items-start gap-3">
-                        <i class="fas fa-cogs text-blue-500 mt-1 text-xs"></i>
-                        <p class="text-xs text-zinc-400">Panel Admin con carga masiva (Bulk) y gestión de visibilidad en tiempo real.</p>
+                        <i class="fas fa-user-clock text-rose-500 mt-1 text-xs"></i>
+                        <p class="text-xs text-zinc-400">
+                            Reservas 24/7 con panel admin para gestionar disponibilidad,
+                            clientes y servicios en tiempo real.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-store text-rose-500 mt-1 text-xs"></i>
+                        <p class="text-xs text-zinc-400">
+                            Multi-vertical: configurable para cualquier tipo de negocio
+                            que trabaje con citas o turnos.
+                        </p>
                     </div>
                 </div>
+
+                <!-- Pills de tecnologías -->
                 <div class="flex flex-wrap gap-2 mb-6 text-[10px]">
-                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Dynamic Rotation</span>
-                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">LocalStorage DB</span>
-                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Bulk Upload</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">JavaScript</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Tailwind CSS</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Admin Panel</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Vercel</span>
                 </div>
+
+                <!-- Credenciales de acceso al panel admin del demo -->
+                <div class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 mb-4 text-[10px] space-y-1">
+                    <p class="text-zinc-400 font-semibold uppercase tracking-wider mb-2">
+                        <i class="fas fa-key text-rose-400 mr-1"></i> Acceso Demo Admin
+                    </p>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-500">Usuario</span>
+                        <span class="text-zinc-200 font-mono">admin@citasaas.com</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-500">Contraseña</span>
+                        <span class="text-zinc-200 font-mono">Admin2024!</span>
+                    </div>
+                </div>
+
+                <!-- Botón único → link externo en Vercel -->
                 <div class="flex gap-4">
-                    <a href="slider.html" target="_blank" class="flex-1 text-center bg-white text-black text-xs font-bold py-2.5 rounded hover:bg-zinc-200 transition">Ver Slider</a>
-                    <a href="panel.html"  target="_blank" class="flex-1 text-center glass text-white text-xs font-bold py-2.5 rounded hover:bg-white/10 transition">Admin Panel</a>
+                    <a href="https://citasaas-prueba.vercel.app/" target="_blank"
+                       class="flex-1 text-center bg-rose-500 text-white text-xs font-bold py-2.5 rounded hover:bg-rose-400 transition">
+                        <i class="fas fa-external-link-alt mr-2"></i>Ver Demo en Vivo
+                    </a>
                 </div>
             </div>
+            <!-- FIN TARJETA CITASAAS ========================= -->
+
+
 
 
             <!-- ─────────────────────────────────────────
@@ -316,81 +357,6 @@
             </div>
 
 
-            <!-- =====================================================
-                 ★ TARJETA 5 (NUEVA): CITASAAS
-                 Gestor de citas con panel admin adaptable a múltiples
-                 negocios: SPAs, barberías, dentistas, etc.
-                 Color accent: rose/pink (diferenciador del resto).
-                 Badge: SAAS LIVE
-                 Link externo: https://citasaas-prueba.vercel.app/
-            ====================================================== -->
-            <div class="project-card glass rounded-2xl p-6 flex flex-col group">
-
-                <!-- Cabecera visual en rosa -->
-                <div class="h-48 bg-rose-500/10 rounded-xl mb-6 flex flex-col items-center justify-center relative border border-rose-500/20 overflow-hidden">
-                    <span class="absolute top-3 right-3 bg-rose-500/20 text-rose-400 text-[10px] px-2 py-1 rounded-full border border-rose-500/30 font-bold">SAAS LIVE</span>
-                    <i class="fas fa-calendar-check text-4xl text-rose-500 mb-2 transition-transform group-hover:scale-110"></i>
-                    <h4 class="text-white font-bold tracking-wider">CITASAAS</h4>
-                    <!-- Overlay hover sutil en rosa -->
-                    <div class="absolute inset-0 bg-rose-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                </div>
-
-                <h3 class="text-xl font-bold text-white mb-2">Gestor de Citas Multi-Negocio</h3>
-                <p class="text-sm text-zinc-500 mb-6 flex-grow">
-                    Plataforma SaaS para gestión de citas con panel admin incluido. Adaptable a SPAs,
-                    barberías, dentistas y cualquier negocio basado en reservas.
-                </p>
-
-                <!-- Features clave -->
-                <div class="space-y-3 mb-6">
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-user-clock text-rose-500 mt-1 text-xs"></i>
-                        <p class="text-xs text-zinc-400">
-                            Reservas 24/7 con panel admin para gestionar disponibilidad,
-                            clientes y servicios en tiempo real.
-                        </p>
-                    </div>
-                    <div class="flex items-start gap-3">
-                        <i class="fas fa-store text-rose-500 mt-1 text-xs"></i>
-                        <p class="text-xs text-zinc-400">
-                            Multi-vertical: configurable para cualquier tipo de negocio
-                            que trabaje con citas o turnos.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Pills de tecnologías -->
-                <div class="flex flex-wrap gap-2 mb-6 text-[10px]">
-                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">JavaScript</span>
-                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Tailwind CSS</span>
-                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Admin Panel</span>
-                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Vercel</span>
-                </div>
-
-                <!-- Credenciales de acceso al panel admin del demo -->
-                <div class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 mb-4 text-[10px] space-y-1">
-                    <p class="text-zinc-400 font-semibold uppercase tracking-wider mb-2">
-                        <i class="fas fa-key text-rose-400 mr-1"></i> Acceso Demo Admin
-                    </p>
-                    <div class="flex justify-between">
-                        <span class="text-zinc-500">Usuario</span>
-                        <span class="text-zinc-200 font-mono">admin@citasaas.com</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-zinc-500">Contraseña</span>
-                        <span class="text-zinc-200 font-mono">Admin2024!</span>
-                    </div>
-                </div>
-
-                <!-- Botón único → link externo en Vercel -->
-                <div class="flex gap-4">
-                    <a href="https://citasaas-prueba.vercel.app/" target="_blank"
-                       class="flex-1 text-center bg-rose-500 text-white text-xs font-bold py-2.5 rounded hover:bg-rose-400 transition">
-                        <i class="fas fa-external-link-alt mr-2"></i>Ver Demo en Vivo
-                    </a>
-                </div>
-            </div>
-            <!-- FIN TARJETA CITASAAS ========================= -->
 
         </div>
     </section>
