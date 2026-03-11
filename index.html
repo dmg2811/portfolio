@@ -4,24 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dylan Miramontes | Fullstack Engineer & RPA Specialist</title>
+
+    <!-- =====================================================
+         DEPENDENCIAS EXTERNAS
+         - Tailwind CSS  → utilidades de estilo
+         - Google Fonts  → tipografía "Inter"
+         - Font Awesome  → íconos vectoriales
+    ====================================================== -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .project-card:hover { border-color: rgba(255, 255, 255, 0.3); transform: translateY(-4px); transition: all 0.3s ease; }
-        
-        ::selection { background: #10b981; color: white; }
 
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+    <style>
+        /* ─────────────────────────────────────────────
+           BASE
+           Fuente global y color de fondo principal (#0a0a0a = negro casi puro)
+        ───────────────────────────────────────────── */
+        body { font-family: 'Inter', sans-serif; background-color: #0a0a0a; }
+
+        /* ─────────────────────────────────────────────
+           .glass  →  Efecto glassmorphism
+           Fondo semitransparente + blur + borde sutil.
+           Usado en: navbar, tarjetas de proyecto, stack.
+        ───────────────────────────────────────────── */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* ─────────────────────────────────────────────
+           .project-card:hover
+           Eleva la tarjeta 4px y aclara el borde al pasar el mouse.
+        ───────────────────────────────────────────── */
+        .project-card:hover {
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-4px);
+            transition: all 0.3s ease;
+        }
+
+        /* ─────────────────────────────────────────────
+           Selección de texto → color verde esmeralda
+        ───────────────────────────────────────────── */
+        ::selection { background: #10b981; color: white; }
+
+        /* ─────────────────────────────────────────────
+           @keyframes fadeInUp
+           Animación de entrada: las tarjetas suben desde abajo
+           con un fade-in simultáneo.
+        ───────────────────────────────────────────── */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
         .project-card { animation: fadeInUp 0.6s ease forwards; }
 
+        /* ─────────────────────────────────────────────
+           .gradient-text  →  Texto con gradiente animado
+           El gradiente se desplaza de izquierda a derecha
+           en un loop de 5 segundos ("efecto brillo").
+           Usado en: título principal del hero.
+        ───────────────────────────────────────────── */
         .gradient-text {
             background: linear-gradient(90deg, #fff, #10b981, #fff);
             background-size: 200% auto;
@@ -29,9 +72,13 @@
             -webkit-text-fill-color: transparent;
             animation: shine 5s linear infinite;
         }
-
         @keyframes shine { to { background-position: 200% center; } }
 
+        /* ─────────────────────────────────────────────
+           FONDO CON GRID DE PUNTOS
+           Patrón radial-gradient que simula una cuadrícula
+           de puntos sutiles (40x40px) sobre el fondo negro.
+        ───────────────────────────────────────────── */
         body {
             background-color: #0a0a0a;
             background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
@@ -41,67 +88,165 @@
 </head>
 <body class="text-zinc-400 antialiased">
 
+    <!-- =====================================================
+         NAVBAR
+         Fija en la parte superior (fixed + z-50).
+         Contiene: logo y links de navegación (anclas internas).
+         El blur del .glass crea el efecto de "cristal esmerilado"
+         sobre el contenido que queda por debajo al hacer scroll.
+    ====================================================== -->
     <nav class="fixed w-full z-50 border-b border-white/10 glass py-4">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+
+            <!-- Logo: DYLAN en blanco, apellido en verde, .DEV en gris -->
             <span class="text-white font-extrabold tracking-tighter text-2xl group cursor-pointer">
                 DYLAN<span class="text-emerald-500 group-hover:text-white transition-colors duration-300">MIRAMONTES</span><span class="text-zinc-500">.DEV</span>
             </span>
+
+            <!-- Links de navegación hacia secciones del mismo HTML -->
             <div class="space-x-8 text-sm font-medium">
                 <a href="#proyectos" class="hover:text-white transition">Proyectos</a>
-                <a href="#stack" class="hover:text-white transition">Stack</a>
-                <a href="#contacto" class="hover:text-white transition border border-white/20 px-4 py-2 rounded-full">Contacto</a>
+                <a href="#stack"     class="hover:text-white transition">Stack</a>
+                <!-- Botón "Contacto" con borde redondeado para destacar -->
+                <a href="#contacto"  class="hover:text-white transition border border-white/20 px-4 py-2 rounded-full">Contacto</a>
             </div>
         </div>
     </nav>
 
+
+    <!-- =====================================================
+         HERO SECTION
+         Sección de presentación principal.
+         - pt-40 compensa la altura del navbar fijo.
+         - Título grande con .gradient-text en la frase clave.
+         - Dos CTA: "Ver Proyectos" (oscuro) y "Mi Stack" (glass).
+    ====================================================== -->
     <section class="pt-40 pb-20 px-6">
         <div class="max-w-4xl mx-auto text-center">
             <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight">
                 Transformo código en <span class="gradient-text">valor de negocio.</span>
             </h1>
             <p class="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto mb-10">
-                Desarrollador Senior especializado en automatización de procesos y arquitecturas escalables. Creador de <span class="text-emerald-500 font-semibold">Energreen Automator</span> y <span class="text-emerald-500 font-semibold">Renacer Natural</span>.
+                Desarrollador Senior especializado en automatización de procesos y arquitecturas escalables.
+                Creador de <span class="text-emerald-500 font-semibold">Energreen Automator</span>
+                y <span class="text-emerald-500 font-semibold">Renacer Natural</span>.
             </p>
             <div class="flex justify-center gap-4">
                 <a href="#proyectos" class="bg-white text-black px-8 py-3 rounded-lg font-bold hover:bg-zinc-200 transition">Ver Proyectos</a>
-                <a href="#stack" class="glass text-white px-8 py-3 rounded-lg font-bold hover:bg-white/5 transition">Mi Stack</a>
+                <a href="#stack"     class="glass text-white px-8 py-3 rounded-lg font-bold hover:bg-white/5 transition">Mi Stack</a>
             </div>
         </div>
     </section>
 
+
+    <!-- =====================================================
+         SECCIÓN PROYECTOS
+         Grid de 2 columnas en desktop, 1 en móvil.
+         Cada tarjeta (.project-card) sigue la misma estructura:
+           1. Cabecera visual (ícono + badge de estado)
+           2. Título y descripción
+           3. Lista de features
+           4. Pills de tecnologías
+           5. Botones de acción
+    ====================================================== -->
     <section id="proyectos" class="py-20 px-6 max-w-6xl mx-auto">
+
         <div class="mb-12">
             <h2 class="text-3xl font-bold text-white mb-2">Proyectos Seleccionados</h2>
             <p class="text-zinc-500">Casos de éxito y soluciones a medida.</p>
         </div>
 
+        <!-- Grid principal de proyectos -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <!-- ─────────────────────────────────────────
+                 TARJETA 1: RENACER NATURAL
+                 E-commerce de herbolaria con CMS propio.
+                 Color accent: emerald (verde).
+            ───────────────────────────────────────────── -->
             <div class="project-card glass rounded-2xl p-6 flex flex-col group">
+
+                <!-- Cabecera visual -->
                 <div class="h-48 bg-emerald-500/10 rounded-xl mb-6 flex flex-col items-center justify-center border border-emerald-500/20 relative overflow-hidden">
+                    <!-- Badge de estado en esquina superior derecha -->
                     <span class="absolute top-3 right-3 bg-emerald-500/20 text-emerald-400 text-[10px] px-2 py-1 rounded-full border border-emerald-500/30 font-bold">PRODUCCIÓN</span>
                     <i class="fas fa-leaf text-4xl text-emerald-500 mb-2"></i>
                     <h4 class="text-white font-bold tracking-wider">RENACER NATURAL</h4>
+                    <!-- Overlay hover sutil -->
                     <div class="absolute inset-0 bg-emerald-600/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
+
                 <h3 class="text-xl font-bold text-white mb-2">E-commerce de Herbolaria</h3>
-                <p class="text-sm text-zinc-500 mb-6 flex-grow">Plataforma integral con CMS personalizado para gestión de stock y validación de pagos vía transferencia bancaria.</p>
+                <p class="text-sm text-zinc-500 mb-6 flex-grow">
+                    Plataforma integral con CMS personalizado para gestión de stock y validación de pagos vía transferencia bancaria.
+                </p>
+
+                <!-- Features clave -->
                 <div class="space-y-3 mb-6">
                     <div class="flex items-start gap-3">
                         <i class="fas fa-shopping-cart text-emerald-500 mt-1 text-xs"></i>
                         <p class="text-xs text-zinc-400">Carrito persistente y buscador en tiempo real.</p>
                     </div>
                 </div>
+
+                <!-- Pills de tecnologías -->
                 <div class="flex flex-wrap gap-2 mb-6 text-[10px]">
                     <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">JavaScript ES6+</span>
                     <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Firebase DB</span>
                     <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Tailwind</span>
                 </div>
+
+                <!-- Botones de acción -->
                 <div class="flex gap-4">
                     <a href="tienda.html" target="_blank" class="flex-1 text-center bg-white text-black text-xs font-bold py-2.5 rounded hover:bg-zinc-200 transition">Tienda en Vivo</a>
-                    <a href="admin.html" target="_blank" class="flex-1 text-center glass text-white text-xs font-bold py-2.5 rounded hover:bg-white/10 transition">Panel Admin</a>
+                    <a href="admin.html"  target="_blank" class="flex-1 text-center glass text-white text-xs font-bold py-2.5 rounded hover:bg-white/10 transition">Panel Admin</a>
                 </div>
             </div>
 
+
+            <!-- ─────────────────────────────────────────
+                 TARJETA 2: GESTOR DE CITAS (Slider / Panel)
+                 Sistema de cartelería digital con rotación.
+                 Color accent: blue (azul).
+                 NOTA: Esta tarjeta comparte la misma vista (slider.html)
+                 que la tarjeta "SLIDER PANTALLAS" más abajo.
+                 Considera unificarlas o diferenciarlas en el futuro.
+            ───────────────────────────────────────────── -->
+            <div class="project-card glass rounded-2xl p-6 flex flex-col group">
+                <div class="h-48 bg-blue-500/10 rounded-xl mb-6 flex flex-col items-center justify-center relative border border-blue-500/20 overflow-hidden">
+                    <span class="absolute top-3 right-3 bg-blue-500/20 text-blue-400 text-[10px] px-2 py-1 rounded-full border border-blue-500/30 font-bold">SMART DISPLAY</span>
+                    <i class="fas fa-tv text-4xl text-blue-500 mb-2 transition-transform group-hover:scale-110"></i>
+                    <h4 class="text-white font-bold tracking-wider">CITAS</h4>
+                    <div class="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Gestor De Citas 24/7</h3>
+                <p class="text-sm text-zinc-500 mb-6 flex-grow">
+                    Sistema de visualización publicitaria con rotación de hardware (180°) y transiciones fluidas para pantallas comerciales.
+                </p>
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-cogs text-blue-500 mt-1 text-xs"></i>
+                        <p class="text-xs text-zinc-400">Panel Admin con carga masiva (Bulk) y gestión de visibilidad en tiempo real.</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6 text-[10px]">
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Dynamic Rotation</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">LocalStorage DB</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Bulk Upload</span>
+                </div>
+                <div class="flex gap-4">
+                    <a href="slider.html" target="_blank" class="flex-1 text-center bg-white text-black text-xs font-bold py-2.5 rounded hover:bg-zinc-200 transition">Ver Slider</a>
+                    <a href="panel.html"  target="_blank" class="flex-1 text-center glass text-white text-xs font-bold py-2.5 rounded hover:bg-white/10 transition">Admin Panel</a>
+                </div>
+            </div>
+
+
+            <!-- ─────────────────────────────────────────
+                 TARJETA 3: ENERGREEN AUTOMATOR
+                 Herramienta RPA para envío masivo de encuestas.
+                 Reduce 4 horas manuales → 15 min automatizados.
+                 Color accent: purple (morado).
+            ───────────────────────────────────────────── -->
             <div class="project-card glass rounded-2xl p-6 flex flex-col group">
                 <div class="h-48 bg-purple-500/10 rounded-xl mb-6 flex flex-col items-center justify-center relative border border-purple-500/20 overflow-hidden">
                     <span class="absolute top-3 right-3 bg-purple-500/20 text-purple-400 text-[10px] px-2 py-1 rounded-full border border-purple-500/30 font-bold">RPA TOOL</span>
@@ -110,76 +255,175 @@
                     <div class="absolute inset-0 bg-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                 </div>
                 <h3 class="text-xl font-bold text-white mb-2">Automatización de CRM</h3>
-                <p class="text-sm text-zinc-500 mb-6 flex-grow">Sistema RPA para el envío masivo y personalizado de encuestas mediante inyección de eventos de Windows.</p>
+                <p class="text-sm text-zinc-500 mb-6 flex-grow">
+                    Sistema RPA para el envío masivo y personalizado de encuestas mediante inyección de eventos de Windows.
+                </p>
                 <div class="space-y-3 mb-6">
                     <div class="flex items-start gap-3">
                         <i class="fas fa-robot text-purple-500 mt-1 text-xs"></i>
-                        <p class="text-xs text-zinc-400">Procesamiento de bases de datos mediante scripts optimizados.
-                            Esta herramienta redujo el tiempo de recolección de feedback de 4 horas manuales a 15 minutos de ejecución automatizada, incrementando la tasa de respuesta en un 30%
+                        <p class="text-xs text-zinc-400">
+                            Procesamiento de bases de datos mediante scripts optimizados.
+                            Esta herramienta redujo el tiempo de recolección de feedback de 4 horas manuales
+                            a 15 minutos de ejecución automatizada, incrementando la tasa de respuesta en un 30%.
                         </p>
                     </div>
-                    
                 </div>
-                
                 <div class="flex flex-wrap gap-2 mb-6 text-[10px]">
                     <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">VBA Scripting</span>
                     <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">RPA Logic</span>
                     <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Excel API</span>
                 </div>
                 <div class="flex gap-4">
-    <a href="rpa-doc.html" class="flex-1 text-center glass text-white text-xs font-bold py-2.5 rounded hover:bg-purple-500 transition">
-        <i class="fas fa-file-code mr-2"></i>Ver Documentación
-    </a>
-</div>
-
+                    <a href="rpa-doc.html" class="flex-1 text-center glass text-white text-xs font-bold py-2.5 rounded hover:bg-purple-500 transition">
+                        <i class="fas fa-file-code mr-2"></i>Ver Documentación
+                    </a>
+                </div>
             </div>
 
+
+            <!-- ─────────────────────────────────────────
+                 TARJETA 4: SLIDER PANTALLAS
+                 Motor de cartelería digital (mismo sistema que
+                 tarjeta 2 pero enfocado en el display físico).
+                 Color accent: blue (azul).
+            ───────────────────────────────────────────── -->
             <div class="project-card glass rounded-2xl p-6 flex flex-col group">
-    <div class="h-48 bg-blue-500/10 rounded-xl mb-6 flex flex-col items-center justify-center relative border border-blue-500/20 overflow-hidden">
-        <span class="absolute top-3 right-3 bg-blue-500/20 text-blue-400 text-[10px] px-2 py-1 rounded-full border border-blue-500/30 font-bold">SMART DISPLAY</span>
-        <i class="fas fa-tv text-4xl text-blue-500 mb-2 transition-transform group-hover:scale-110"></i>
-        <h4 class="text-white font-bold tracking-wider">SLIDER PANTALLAS</h4>
-        <div class="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-    </div>
-    <h3 class="text-xl font-bold text-white mb-2">Motor de Cartelería Digital</h3>
-    <p class="text-sm text-zinc-500 mb-6 flex-grow">Sistema de visualización publicitaria con rotación de hardware (180°) y transiciones fluidas para pantallas comerciales.</p>
-    <div class="space-y-3 mb-6">
-        <div class="flex items-start gap-3">
-            <i class="fas fa-cogs text-blue-500 mt-1 text-xs"></i>
-            <p class="text-xs text-zinc-400">Panel Admin con carga masiva (Bulk) y gestión de visibilidad en tiempo real.</p>
-        </div>
-    </div>
-    <div class="flex flex-wrap gap-2 mb-6 text-[10px]">
-        <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Dynamic Rotation</span>
-        <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">LocalStorage DB</span>
-        <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Bulk Upload</span>
-    </div>
-    <div class="flex gap-4">
-        <a href="slider.html" target="_blank" class="flex-1 text-center bg-white text-black text-xs font-bold py-2.5 rounded hover:bg-zinc-200 transition">Ver Slider</a>
-        <a href="panel.html" target="_blank" class="flex-1 text-center glass text-white text-xs font-bold py-2.5 rounded hover:bg-white/10 transition">Admin Panel</a>
-    </div>
-</div>
+                <div class="h-48 bg-blue-500/10 rounded-xl mb-6 flex flex-col items-center justify-center relative border border-blue-500/20 overflow-hidden">
+                    <span class="absolute top-3 right-3 bg-blue-500/20 text-blue-400 text-[10px] px-2 py-1 rounded-full border border-blue-500/30 font-bold">SMART DISPLAY</span>
+                    <i class="fas fa-tv text-4xl text-blue-500 mb-2 transition-transform group-hover:scale-110"></i>
+                    <h4 class="text-white font-bold tracking-wider">SLIDER PANTALLAS</h4>
+                    <div class="absolute inset-0 bg-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Motor de Cartelería Digital</h3>
+                <p class="text-sm text-zinc-500 mb-6 flex-grow">
+                    Sistema de visualización publicitaria con rotación de hardware (180°) y transiciones fluidas para pantallas comerciales.
+                </p>
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-cogs text-blue-500 mt-1 text-xs"></i>
+                        <p class="text-xs text-zinc-400">Panel Admin con carga masiva (Bulk) y gestión de visibilidad en tiempo real.</p>
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6 text-[10px]">
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Dynamic Rotation</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">LocalStorage DB</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Bulk Upload</span>
+                </div>
+                <div class="flex gap-4">
+                    <a href="slider.html" target="_blank" class="flex-1 text-center bg-white text-black text-xs font-bold py-2.5 rounded hover:bg-zinc-200 transition">Ver Slider</a>
+                    <a href="panel.html"  target="_blank" class="flex-1 text-center glass text-white text-xs font-bold py-2.5 rounded hover:bg-white/10 transition">Admin Panel</a>
+                </div>
+            </div>
+
+
+            <!-- =====================================================
+                 ★ TARJETA 5 (NUEVA): CITASAAS
+                 Gestor de citas con panel admin adaptable a múltiples
+                 negocios: SPAs, barberías, dentistas, etc.
+                 Color accent: rose/pink (diferenciador del resto).
+                 Badge: SAAS LIVE
+                 Link externo: https://citasaas-prueba.vercel.app/
+            ====================================================== -->
+            <div class="project-card glass rounded-2xl p-6 flex flex-col group">
+
+                <!-- Cabecera visual en rosa -->
+                <div class="h-48 bg-rose-500/10 rounded-xl mb-6 flex flex-col items-center justify-center relative border border-rose-500/20 overflow-hidden">
+                    <span class="absolute top-3 right-3 bg-rose-500/20 text-rose-400 text-[10px] px-2 py-1 rounded-full border border-rose-500/30 font-bold">SAAS LIVE</span>
+                    <i class="fas fa-calendar-check text-4xl text-rose-500 mb-2 transition-transform group-hover:scale-110"></i>
+                    <h4 class="text-white font-bold tracking-wider">CITASAAS</h4>
+                    <!-- Overlay hover sutil en rosa -->
+                    <div class="absolute inset-0 bg-rose-600/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+
+                <h3 class="text-xl font-bold text-white mb-2">Gestor de Citas Multi-Negocio</h3>
+                <p class="text-sm text-zinc-500 mb-6 flex-grow">
+                    Plataforma SaaS para gestión de citas con panel admin incluido. Adaptable a SPAs,
+                    barberías, dentistas y cualquier negocio basado en reservas.
+                </p>
+
+                <!-- Features clave -->
+                <div class="space-y-3 mb-6">
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-user-clock text-rose-500 mt-1 text-xs"></i>
+                        <p class="text-xs text-zinc-400">
+                            Reservas 24/7 con panel admin para gestionar disponibilidad,
+                            clientes y servicios en tiempo real.
+                        </p>
+                    </div>
+                    <div class="flex items-start gap-3">
+                        <i class="fas fa-store text-rose-500 mt-1 text-xs"></i>
+                        <p class="text-xs text-zinc-400">
+                            Multi-vertical: configurable para cualquier tipo de negocio
+                            que trabaje con citas o turnos.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Pills de tecnologías -->
+                <div class="flex flex-wrap gap-2 mb-6 text-[10px]">
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">JavaScript</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Tailwind CSS</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Admin Panel</span>
+                    <span class="bg-white/5 border border-white/10 px-2 py-1 rounded text-zinc-300">Vercel</span>
+                </div>
+
+                <!-- Credenciales de acceso al panel admin del demo -->
+                <div class="bg-white/5 border border-white/10 rounded-lg px-4 py-3 mb-4 text-[10px] space-y-1">
+                    <p class="text-zinc-400 font-semibold uppercase tracking-wider mb-2">
+                        <i class="fas fa-key text-rose-400 mr-1"></i> Acceso Demo Admin
+                    </p>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-500">Usuario</span>
+                        <span class="text-zinc-200 font-mono">admin@citasaas.com</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-zinc-500">Contraseña</span>
+                        <span class="text-zinc-200 font-mono">Admin2024!</span>
+                    </div>
+                </div>
+
+                <!-- Botón único → link externo en Vercel -->
+                <div class="flex gap-4">
+                    <a href="https://citasaas-prueba.vercel.app/" target="_blank"
+                       class="flex-1 text-center bg-rose-500 text-white text-xs font-bold py-2.5 rounded hover:bg-rose-400 transition">
+                        <i class="fas fa-external-link-alt mr-2"></i>Ver Demo en Vivo
+                    </a>
+                </div>
+            </div>
+            <!-- FIN TARJETA CITASAAS ========================= -->
+
         </div>
     </section>
 
+
+    <!-- =====================================================
+         SECCIÓN STACK TÉCNICO
+         Grid 4 columnas con ícono + nombre de cada tecnología.
+         Cada card tiene efecto hover: borde verde + escala del ícono.
+    ====================================================== -->
     <section id="stack" class="py-20 px-6 max-w-6xl mx-auto border-t border-white/5">
         <div class="text-center mb-16">
             <h2 class="text-3xl font-bold text-white mb-4">Especialización Técnica</h2>
+            <!-- Línea decorativa esmeralda -->
             <div class="h-1 w-20 bg-emerald-500 mx-auto rounded-full"></div>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <!-- JavaScript ES6+ -->
             <div class="glass p-6 rounded-2xl text-center hover:border-emerald-500/50 transition group">
                 <i class="fab fa-js-square text-4xl text-yellow-400 mb-4 transition-transform group-hover:scale-110"></i>
                 <h3 class="text-white font-bold">JavaScript ES6+</h3>
             </div>
+            <!-- Firebase -->
             <div class="glass p-6 rounded-2xl text-center hover:border-emerald-500/50 transition group">
                 <i class="fas fa-fire text-4xl text-orange-500 mb-4 transition-transform group-hover:scale-110"></i>
                 <h3 class="text-white font-bold">Firebase</h3>
             </div>
+            <!-- VBA & RPA -->
             <div class="glass p-6 rounded-2xl text-center hover:border-emerald-500/50 transition group">
                 <i class="fas fa-file-excel text-4xl text-green-600 mb-4 transition-transform group-hover:scale-110"></i>
                 <h3 class="text-white font-bold">VBA & RPA</h3>
             </div>
+            <!-- Tailwind CSS -->
             <div class="glass p-6 rounded-2xl text-center hover:border-emerald-500/50 transition group">
                 <i class="fab fa-css3-alt text-4xl text-blue-500 mb-4 transition-transform group-hover:scale-110"></i>
                 <h3 class="text-white font-bold">Tailwind CSS</h3>
@@ -187,10 +431,19 @@
         </div>
     </section>
 
+
+    <!-- =====================================================
+         FOOTER / CONTACTO
+         CTA final con email directo.
+         El subrayado cambia de zinc a blanco en hover.
+    ====================================================== -->
     <footer id="contacto" class="py-20 border-t border-white/5 text-center px-6">
         <h2 class="text-3xl font-bold text-white mb-4">¿Tienes un proyecto en mente?</h2>
         <p class="text-zinc-500 mb-8 max-w-md mx-auto">Hablemos sobre cómo puedo ayudarte a construir tu próxima gran idea.</p>
-        <a href="mailto:dylan.gomez28@gmail.com" class="text-xl text-white font-semibold underline underline-offset-8 decoration-zinc-700 hover:decoration-white transition">dylan.gomez28@gmail.com</a>
+        <a href="mailto:dylan.gomez28@gmail.com"
+           class="text-xl text-white font-semibold underline underline-offset-8 decoration-zinc-700 hover:decoration-white transition">
+            dylan.gomez28@gmail.com
+        </a>
     </footer>
 
 </body>
